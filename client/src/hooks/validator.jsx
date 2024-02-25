@@ -4,33 +4,36 @@ const validator = (formData) => {
 
     if (formData.name) {
         if (formData.name.length < 3) {
-            tempErrors = { ...tempErrors, name: { message: "Store Name must be at least 3 characters long." } }
+            tempErrors = { ...tempErrors, name: { message: "Creature name must be longer than 2 characters." } }
             valid = false
         }
-        else if (formData.name.length > 100) {
-            tempErrors = { ...tempErrors, name: { message: "Store Name must be at most 100 characters long." } }
-            valid = false
-        }
-    }
-    else valid = false
-
-    if (formData.number !== "") {
-        if (formData.number < 1) {
-            tempErrors = { ...tempErrors, number: { message: "Store Number must be a positive integer." } }
-            valid = false
-        }
-        else if ([1049, 36, 245, 20937, 4].includes(Number(formData.number))){
-            tempErrors = { ...tempErrors, number: { message: `${Number(formData.number)} is a banned store number!` } }
+        else if (formData.name.length > 25) {
+            tempErrors = { ...tempErrors, name: { message: "Creature name can not exceed 25 characters." } }
             valid = false
         }
     }
     else valid = false
 
-
-    if (![true, false].includes(formData.isOpen)) {
-        tempErrors = { ...tempErrors, isOpen: { message: "Store open status is either only true or false." } }
-        valid = false
+    if (formData.creatureType) {
+        if (formData.creatureType.length < 3) {
+            tempErrors = { ...tempErrors, creatureType: { message: "Creature type must be longer than 2 characters." } }
+            valid = false
+        }
+        else if (formData.creatureType.length > 20) {
+            tempErrors = { ...tempErrors, creatureType: { message: "Creature type can not exceed 20 characters." } }
+            valid = false
+        }
     }
+    else valid = false
+
+
+    if (formData.description) {
+        if (formData.description.length < 3) {
+            tempErrors = { ...tempErrors, description: { message: "Creature description must be longer than 2 characters." } }
+            valid = false
+        }
+    }
+    else valid = false
 
     return [tempErrors, valid]
 }
