@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
-import { Link, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { getAllHandler } from '../hooks/handlers'
 
-const Dashboard = (props) => {
+const Dashboard = () => {
 
     const [list, setList] = useState([])
 
     useEffect(() => {
-        axios.get('http://localhost:8000/api/creatures')
-            .then((res) => {
-                console.log(res)
-                setList(res.data)
-            }).catch((err) => {
-                console.log(err)
-            })
+        getAllHandler(setList)
     }, [])
 
     return (

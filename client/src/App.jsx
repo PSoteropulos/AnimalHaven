@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard'
 import CreatureForm from './components/CreatureForm';
 import EditCreatureForm from './components/EditCreatureForm'
 import OneCreature from './components/OneCreature'
+import NotFound from './views/NotFound';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/new" element={<CreatureForm/>} />
           <Route path="/onecreature/:id" element={<OneCreature/>} />
           <Route path="/edit/:id" element={<EditCreatureForm/>} />
+          <Route path='*' element={< NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
